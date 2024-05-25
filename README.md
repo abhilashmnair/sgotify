@@ -2,18 +2,15 @@
 ![Version](https://img.shields.io/badge/version-v1.0-blue)
 
 sGOtify is a Go package that provides an easy-to-use wrapper for working with the Spotify API.
+This repository follows the [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api)
 
 This project is still under `development`
-
----
 
 ## Installation
 To install the library
 ```
 go get github.com/abhilashmnair/sgotify
 ```
-
----
 
 ## Usage
 The usage of the package is relative simple. The following instructions go through the steps.
