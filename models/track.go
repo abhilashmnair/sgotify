@@ -50,13 +50,10 @@ type Track struct {
 	IsLocal          bool         `json:"is_local"`
 }
 
-type PlaylistTrack struct {
-}
-
 func (track *Track) GetTrack(id, token string) (*Track, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("https://api.spotify.com/v1/tracks/%s", id), nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", token))
@@ -65,18 +62,24 @@ func (track *Track) GetTrack(id, token string) (*Track, error) {
 	resp, err := client.Do(req)
 
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to perform request: %w", err)
 	}
 
 	defer resp.Body.Close()
 
+	// Check the status code of the response
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("%s", string(body))
+	}
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to read response body: %w", err)
 	}
 
 	if err := json.Unmarshal(body, &track); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to unmarshal response body: %w", err)
 	}
 
 	return track, nil
