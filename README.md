@@ -19,6 +19,9 @@ The usage of the package is relative simple. The following instructions go throu
 To use the package, you need to authorize using the clientID and clientSecret obtain from [Spotify API](https://developer.spotify.com/)
 
 ```
+ClientID = "your_client_id"
+ClientSecret = "your_client_secret"
+
 auth, err := sgotify.Authorize(ClientID, ClientSecret)
 if err != nil {
 	fmt.Println("Authorization failed", err)

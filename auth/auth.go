@@ -9,14 +9,18 @@ import (
 	"strings"
 )
 
+// Response received from the Spotify API endpoint upon authorisation
+// AccessToken  string	An access token that can be provided in subsequent calls, for example to Spotify Web API services.
+// TokenType    string	How the access token may be used: always "Bearer"
+// ExpiresIn        int	    The time period (in seconds) for which the access token is valid.
 type Response struct {
-	AccessToken  string `json:"access_token"`
-	TokenType    string `json:"token_type"`
-	Scope        string `json:"scope"`
-	ExpiresIn    int    `json:"expires_in"`
-	RefreshToken string `json:"refresh_token"`
+	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
+	ExpiresIn   int    `json:"expires_in"`
 }
 
+// Function to get the access token. Accepts the clientID and clientSecret as parameters.
+// Returns a Response object
 func (r *Response) GetToken(clientID, clientSecret string) (*Response, error) {
 	data := url.Values{}
 	data.Set("grant_type", "client_credentials")
