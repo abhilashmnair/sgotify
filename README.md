@@ -1,3 +1,4 @@
+![Spotify_Icon_RGB_Black](https://raw.githubusercontent.com/abhilashmnair/sgotify/main/logo.png)
 # sGOtify
 [![Go Reference](https://pkg.go.dev/badge/godoc.org/github.com/abhilashmnair/sgotify.svg)](https://pkg.go.dev/github.com/abhilashmnair/sgotify)
 
