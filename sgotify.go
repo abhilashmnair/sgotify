@@ -49,3 +49,12 @@ func FetchPlaylist(token, playlistID string) (*models.Playlist, error) {
 	}
 	return data, nil
 }
+
+func FetchUser(token, userID string) (*models.User, error) {
+	user := &models.User{}
+	data, err := user.GetUser(userID, token)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+}
